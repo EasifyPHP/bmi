@@ -1,0 +1,59 @@
+{
+  "name": "easifyphp/bmi",
+  "description": "A simple Body Mass Index (BMI) library.",
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Mark Magyar",
+      "email": "hello@mmark.me"
+    }
+  ],
+  "require": {
+    "php": ">=8.2"
+  },
+  "require-dev": {
+    "ergebnis/composer-normalize": "^2.31",
+    "fakerphp/faker": "^1.21",
+    "friendsofphp/php-cs-fixer": "^3.16",
+    "jetbrains/phpstorm-attributes": "^1.0",
+    "pestphp/pest": "^2.6",
+    "roave/security-advisories": "dev-latest",
+    "xheaven/composer-git-hooks": "^3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Easifyphp\\Bmi\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Easifyphp\\Bmi\\Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true,
+      "ergebnis/composer-normalize": true
+    },
+    "sort-packages": true
+  },
+  "extra": {
+    "composer-normalize": {
+      "indent-size": 2,
+      "indent-style": "space"
+    },
+    "hooks": {
+      "pre-commit": "composer fix:dry"
+    }
+  },
+  "scripts": {
+    "post-install-cmd": "cghooks add --ignore-lock",
+    "post-update-cmd": "cghooks update",
+    "post-autoload-dump": "composer normalize",
+    "fix": "php-cs-fixer fix --using-cache=no",
+    "fix:dry": "php-cs-fixer fix --using-cache=no --diff --dry-run",
+    "test": "pest",
+    "test:coverage": "pest --coverage --min=90"
+  }
+}
